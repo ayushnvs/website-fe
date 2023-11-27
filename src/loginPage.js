@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export class LoginPage extends Component {
 
@@ -30,7 +31,7 @@ export class LoginPage extends Component {
               <button className="btn btn-primary w-100 py-2" type="submit">
                 Sign in
               </button>
-              <div className='mt-4 mb-4'>Don't have an account? <a href="/register">Register here</a></div>
+              <div className='mt-4 mb-4'>Don't have an account? <Link to="/register">Register here</Link></div>
             </form>
           </main>
         </div>

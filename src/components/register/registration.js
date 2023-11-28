@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './register.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
@@ -53,16 +54,17 @@ export class RegistrationPage extends Component {
             password: this.state.password
         }
 
-        axios.post('http://localhost:8000/account/register/', registrationData).then(res => {
-            console.log(res.data)
-            this.setState({
-                username: '',
-                password: '',
-                isAvailable: null
-            })
+        // axios.post('http://localhost:8000/account/register/', registrationData).then(res => {
+        //     console.log(res.data)
+        //     this.setState({
+        //         username: '',
+        //         password: '',
+        //         isAvailable: null
+        //     })
     
-        })
-        // return <Redirect to='/login'  />
+        // })
+        console.log('Redirecting to login page')
+        // history.push('/login')
     }
 
 

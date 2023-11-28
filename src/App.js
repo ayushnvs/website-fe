@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './navbar'
-import LoginPage from './loginPage'
-import RegistrationPage from './registrationPage'
-import Footer from './footer'
+import Navbar from './components/navbar'
+import LoginPage from './components/login/login'
+import RegistrationPage from './components/register/registration'
+import Footer from './components/footer'
 
 
 const App = () => {

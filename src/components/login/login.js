@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const LoginPage = () => {
+const LoginPage = (props) => {
+  const navigate = useNavigate()
 
   const [user, setUser] = useState({
     username: '',
@@ -16,12 +18,26 @@ const LoginPage = () => {
     })
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     const { username, password } = user
 
     if (username !== "" && password !== "") {
-
+      try {
+        const res = await axios.post('http://localhost:8000/account/login', user)
+        // alert(res.data.message)
+        props.setUser({
+          username: res.data.isUserAvailable.username,
+          token: res.data.token,
+          isLoggedIn: true
+        })
+        localStorage.setItem('username', res.data.isUserAvailable.username)
+        localStorage.setItem('token', res.data.token)
+        navigate('/')
+      } catch (error) {
+        alert(error.response.data.error)
+        console.error(error.response.data.error)
+      }
     } else {
       alert("Username or Password cannot be empty!")
     }
@@ -30,7 +46,6 @@ const LoginPage = () => {
 
   return (
     <div className='bg-body-tertiary pb-4 pt-4'>
-      {console.log('user', user)}
       <div className="nav justify-content-center pt-4 mb-4">
         <img className='nav-item' src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width={72} height={57} />
       </div>

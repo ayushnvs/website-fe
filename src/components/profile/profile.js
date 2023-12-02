@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <section style={{ backgroundColor: "#eee" }}>
+      {console.log(props)}
       <div className="container py-5">
         <div className="row">
           <div className="col">
@@ -31,9 +32,9 @@ const Profile = () => {
                   className="rounded-circle img-fluid"
                   style={{ width: 150 }}
                 />
-                <h5 className="my-3">John Smith</h5>
+                <h5 className="my-3">{props.loggedInUser.name}</h5>
                 <p className="text-muted mb-1">Full Stack Developer</p>
-                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                <p className="text-muted mb-4">Madhapur, Telangana, India</p>
                 <div className="d-flex justify-content-center mb-2">
                   <button type="button" className="btn btn-primary">
                     Follow
@@ -49,35 +50,35 @@ const Profile = () => {
                 <ul className="list-group list-group-flush rounded-3">
                   <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                     <i className="fas fa-globe fa-lg text-warning" />
-                    <p className="mb-0">https://mdbootstrap.com</p>
+                    <p className="mb-0">Add your website</p>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                     <i
                       className="fab fa-github fa-lg"
                       style={{ color: "#333333" }}
                     />
-                    <p className="mb-0">mdbootstrap</p>
+                    <p className="mb-0">Add your github account</p>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                     <i
                       className="fab fa-twitter fa-lg"
                       style={{ color: "#55acee" }}
                     />
-                    <p className="mb-0">@mdbootstrap</p>
+                    <p className="mb-0">Add your twitter account</p>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                     <i
                       className="fab fa-instagram fa-lg"
                       style={{ color: "#ac2bac" }}
                     />
-                    <p className="mb-0">mdbootstrap</p>
+                    <p className="mb-0">Add your instagram account</p>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                     <i
                       className="fab fa-facebook-f fa-lg"
                       style={{ color: "#3b5998" }}
                     />
-                    <p className="mb-0">mdbootstrap</p>
+                    <p className="mb-0">Add your facebook account</p>
                   </li>
                 </ul>
               </div>
@@ -91,7 +92,7 @@ const Profile = () => {
                     <p className="mb-0">Full Name</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">Johnatan Smith</p>
+                    <p className="text-muted mb-0">{props.loggedInUser.name}</p>
                   </div>
                 </div>
                 <hr />

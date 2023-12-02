@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './register.css'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import registerImg from './../../assets/img/register.jpeg'
+import useAuth from '../../hooks/AuthProvider'
+
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{4,20}$/
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%]).{8,24}$/
 
 const RegistrationPage = (props) => {
   const navigate = useNavigate()
+  const { setAuth } = useAuth()
+
+  const errRef = useRef()
 
   const [user, setUser] = useState({
     name: '',
@@ -15,6 +22,16 @@ const RegistrationPage = (props) => {
     verifyPassword: '',
     isUsernameAvailable: null
   })
+
+  // const [validUsername, setValidUsername] = useState(false)
+  // const [validPassword, setValidPassword] = useState(false)
+  // const [matchPassword, setMatchPassword] = useState('')
+  // const [validMatch, setValidMatch] = useState(false)
+
+  // const [errMsg, setErrMsg] = useState('')
+  // const [success, setSuccess] = useState(false)
+
+
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -55,9 +72,8 @@ const RegistrationPage = (props) => {
           password: '',
           isAvailable: null
         })
-        props.setUser({
-          username: res.data.user.username,
-          token: res.data.token,
+        setAuth({
+          ...res.data,
           isLoggedIn: true
         })
         localStorage.setItem('username', res.data.user.username)
@@ -74,7 +90,7 @@ const RegistrationPage = (props) => {
   return (
     <div className="bg-body-tertiary pb-4 pt-4">
       <div className="row">
-        <div className="col-5">
+        <div className="col-7">
           <div className="d-flex align-items-center mt-4">
             <main className="form-signin w-100 m-auto">
               <form onSubmit={handleSubmit}>
@@ -187,14 +203,14 @@ const RegistrationPage = (props) => {
             </main>
           </div>
         </div>
-        <div className="col-7">
+        <div className="col-5">
           <div className="nav justify-content-center mt-4 pt-4">
             <img
               className="nav-item"
               src={registerImg}
               alt=""
-              width={700}
-              height={500}
+              width={300}
+              height={200}
             />
           </div>
         </div>

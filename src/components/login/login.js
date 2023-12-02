@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import useAuth from '../../hooks/AuthProvider'
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const navigate = useNavigate()
+  const { setAuth } = useAuth()
 
   const [user, setUser] = useState({
     username: '',
@@ -25,18 +27,17 @@ const LoginPage = (props) => {
     if (username !== "" && password !== "") {
       try {
         const res = await axios.post('http://localhost:8000/account/login', user)
-        // alert(res.data.message)
-        props.setUser({
-          username: res.data.isUserAvailable.username,
-          token: res.data.token,
+        console.log(res)
+        setAuth({
+          ...res.data,
           isLoggedIn: true
         })
-        localStorage.setItem('username', res.data.isUserAvailable.username)
+        localStorage.setItem('username', res.data.username)
         localStorage.setItem('token', res.data.token)
         navigate('/')
       } catch (error) {
-        alert(error.response.data.error)
-        console.error(error.response.data.error)
+        // alert(error.response.data.error)
+        console.error(error)
       }
     } else {
       alert("Username or Password cannot be empty!")

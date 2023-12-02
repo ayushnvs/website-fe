@@ -1,9 +1,11 @@
 import React from 'react'
+import useAuth from '../../hooks/AuthProvider'
 
-const Profile = (props) => {
+const Profile = () => {
+  const { auth } = useAuth()
+
   return (
     <section style={{ backgroundColor: "#eee" }}>
-      {console.log(props)}
       <div className="container py-5">
         <div className="row">
           <div className="col">
@@ -32,7 +34,7 @@ const Profile = (props) => {
                   className="rounded-circle img-fluid"
                   style={{ width: 150 }}
                 />
-                <h5 className="my-3">{props.loggedInUser.name}</h5>
+                <h5 className="my-3">{auth.name}</h5>
                 <p className="text-muted mb-1">Full Stack Developer</p>
                 <p className="text-muted mb-4">Madhapur, Telangana, India</p>
                 <div className="d-flex justify-content-center mb-2">
@@ -92,7 +94,7 @@ const Profile = (props) => {
                     <p className="mb-0">Full Name</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">{props.loggedInUser.name}</p>
+                    <p className="text-muted mb-0">{auth.name}</p>
                   </div>
                 </div>
                 <hr />
@@ -101,7 +103,7 @@ const Profile = (props) => {
                     <p className="mb-0">Email</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">example@example.com</p>
+                    <p className="text-muted mb-0">{auth.email}</p>
                   </div>
                 </div>
                 <hr />
@@ -110,11 +112,11 @@ const Profile = (props) => {
                     <p className="mb-0">Phone</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">(097) 234-5678</p>
+                    <p className="text-muted mb-0">(857) 786-7848</p>
                   </div>
                 </div>
                 <hr />
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-sm-3">
                     <p className="mb-0">Mobile</p>
                   </div>
@@ -122,13 +124,13 @@ const Profile = (props) => {
                     <p className="text-muted mb-0">(098) 765-4321</p>
                   </div>
                 </div>
-                <hr />
+                <hr /> */}
                 <div className="row">
                   <div className="col-sm-3">
                     <p className="mb-0">Address</p>
                   </div>
                   <div className="col-sm-9">
-                    <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                    <p className="text-muted mb-0">Madhapur, Telangana, India</p>
                   </div>
                 </div>
               </div>

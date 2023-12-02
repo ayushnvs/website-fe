@@ -1,14 +1,17 @@
 import React from 'react'
+import useAuth from '../../hooks/AuthProvider'
 
-const Footer = (props) => {
+const Footer = () => {
+    const { auth } = useAuth()
+
     return (
         <>
             {
-                props.isLoggedIn
+                auth.isLoggedIn
                     ?
                     <ul className="nav justify-content-center border">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/">Active</a>
+                          <a className="nav-link active" aria-current="page" href="/">Active</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/">Link</a>

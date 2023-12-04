@@ -6,7 +6,7 @@ const ProfileSnip = () => {
     const [user, setUser] = useState({})
 
     return (
-        <div className="profile-snip me-2">
+        <div className="profile-snip">
             <div className="card user-card">
                 <div className="card-header">
                     <h5>Profile</h5>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Quote = () => {
     return (
-        <figure className="text-center">
+        <figure className="text-center card p-3">
             <blockquote className="blockquote">
                 <p>A well-known quote, contained in a blockquote element.</p>
             </blockquote>

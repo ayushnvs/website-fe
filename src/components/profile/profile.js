@@ -6,8 +6,8 @@ const Profile = () => {
 
   return (
     <section style={{ backgroundColor: "#eee" }}>
-      <div className="container py-5">
-        <div className="row">
+      <div className="px-5 py-4">
+        {/* <div className="row">
           <div className="col">
             <nav aria-label="breadcrumb" className="bg-light rounded-3 p-3 mb-4">
               <ol className="breadcrumb mb-0">
@@ -23,7 +23,7 @@ const Profile = () => {
               </ol>
             </nav>
           </div>
-        </div>
+        </div> */}
         <div className="row">
           <div className="col-lg-4">
             <div className="card mb-4">

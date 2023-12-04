@@ -12,7 +12,7 @@ const Blog = () => {
     })
 
     return (
-        <div className='blog container m-t-8 p-4'>
+        <div className='blog card p-4'>
             <div className="blog-header m-b-4">
                 <h2 className='fw-bold'>{blogInfo.title}</h2>
             </div>

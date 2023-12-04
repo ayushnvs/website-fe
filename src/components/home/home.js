@@ -5,14 +5,16 @@ import Quote from '../snippets/quote/quote'
 
 const Home = () => {
   return (
-    <div className="row">
+    <div className="container py-4">
+      <div className="row">
       <div className="col-md-9">
-        <Quote />
         <Blog />
       </div>
-      <div className="col-md-3 mt-4">
+      <div className="col-md-3">
+        <Quote />
         <ProfileSnip />
       </div>
+    </div>
     </div>
   )
 }

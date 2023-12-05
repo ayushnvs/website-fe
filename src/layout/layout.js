@@ -36,7 +36,7 @@ const Layout = () => {
     }, [])
 
     return (
-        <main className="App" style={{ backgroundColor: "#eee" }}>
+        <main className="App">
             {
                 isLoading
                     ? <>

@@ -61,24 +61,41 @@ const RegistrationPage = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const { username, password } = user
+    const { username, password, verifyPassword, isUsernameAvailable } = user
 
-    if (username !== "" && password !== "") {
-      axios.post('http://localhost:8000/account/register/', user).then(res => {
-        console.log(res.data)
-        setUser({
-          ...user,
-          username: '',
-          password: '',
-          isAvailable: null
+    if (username !== "" && password !== "" && password == verifyPassword) {
+      try {
+        // Checking Username
+        checkAvailability()
+        if ( !isUsernameAvailable ) {
+          alert('Username Taken. Please enter another!')
+          return
+        } 
+
+        axios.post('http://localhost:8000/account/register/', user).then(res => {
+          console.log(res.data)
+          setUser({
+            ...user,
+            username: '',
+            password: '',
+            isAvailable: null
+          })
+          setAuth({
+            ...res.data,
+            isLoggedIn: true
+          })
+          localStorage.setItem('username', res.data.user.username)
+          localStorage.setItem('token', res.data.token)
+          navigate('/')
         })
-        setAuth({
-          ...res.data,
-          isLoggedIn: true
-        })
-        localStorage.setItem('username', res.data.user.username)
-        localStorage.setItem('token', res.data.token)
-        navigate('/')
+      } catch (err) {
+        console.log(err)
+      }
+    } else if (password != verifyPassword) {
+      alert('Re-enter password did not match!')
+      setUser({
+        ...user,
+        verifyPassword: ''
       })
     } else {
       alert('Username or Password cannot be empty!')

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import blogImage from './../../../assets/img/blog.webp'
 import './blog.css'
 
 const Blog = () => {
@@ -12,18 +13,23 @@ const Blog = () => {
     })
 
     return (
-        <div className='blog card p-4'>
-            <div className="blog-header m-b-4">
-                <h2 className='fw-bold'>{blogInfo.title}</h2>
+        <div className='blog card'>
+            <div className="blog-image">
+                <img src={blogImage} className='card-img-top' alt="blog" />
             </div>
-            <div className="author-info">
-                <p className="author-name d-inline me-2">By {blogInfo.authorName}</p>
-                <p className="publishedon d-inline me-2">Published on {blogInfo.publishedOn}</p>
-                <p className="modifiedon d-inline">Modified on {blogInfo.modifiledOn}</p>
-            </div>
-            <div className="blog-content">
-                <p className="content">{blogInfo.content}</p>
-            </div>
+            <section className='p-4'>
+                <div className="blog-header m-b-4">
+                    <h1>{blogInfo.title}</h1>
+                </div>
+                <div className="author-info">
+                    <p className="author-name d-inline me-2">By {blogInfo.authorName}</p>
+                    <p className="publishedon d-inline me-2">Published on {blogInfo.publishedOn}</p>
+                    <p className="modifiedon d-inline">Modified on {blogInfo.modifiledOn}</p>
+                </div>
+                <div className="blog-content">
+                    <p className="content">{blogInfo.content}</p>
+                </div>
+            </section>
         </div>
     )
 }

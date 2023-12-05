@@ -10,7 +10,7 @@ const Navbar = () => {
   const { auth, setAuth } = useAuth()
 
   const goToProfile = () => {
-    navigate('/Profile')  
+    navigate('/Profile')
   }
 
   const handleLogout = () => {
@@ -26,13 +26,23 @@ const Navbar = () => {
       {
         auth.isLoggedIn
           ?
-          <nav className="navbar bg-body-tertiary sticky-top shadow-sm">
-            <div className='float-start'>
+          <nav className="navbar bg-body-tertiary sticky-top border">
+            <div className='float-start ms-2'>
               <Link className="navbar-brand fw-bold fs-3 ms-2" to="/">
                 {/* <img src={logo} alt="" width="30" height="30" /> */}
-                narayana blogs
+                BLOGS
               </Link>
             </div>
+
+            {/* <div className="input-group mb-3">
+              <input type="text" className="form-control" />
+              <div className="input-group-append">
+                <button className="btn btn-primary">
+                  <i className="fas fa-search" />
+                </button>
+              </div>
+            </div> */}
+
             <div className='float-end me-2'>
               {/* <ChangeThemes /> */}
               <button type="button" className="btn btn-info me-2" onClick={goToProfile}>Profile</button>

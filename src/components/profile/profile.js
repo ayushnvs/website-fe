@@ -1,5 +1,6 @@
 import React from 'react'
 import useAuth from '../../hooks/AuthProvider'
+import './profile.css'
 
 const Profile = () => {
   const { auth } = useAuth()
@@ -11,12 +12,25 @@ const Profile = () => {
           <div className="col-lg-4">
             <div className="card mb-4">
               <div className="card-body text-center">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                  alt="avatar"
-                  className="rounded-circle img-fluid"
-                  style={{ width: 150 }}
+
+                <label htmlFor="file-upload">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    alt="avatar"
+                    className="rounded-circle img-fluid"
+                    style={{ width: 150 }}
+                  />
+                </label>
+
+                <input
+                  type="file"
+                  label="Image"
+                  name="profileImg"
+                  id="file-upload"
+                  accept='.jpeg, .png, .jpg'
+                  onChange={(e) => { }}
                 />
+
                 <h5 className="my-3">{auth.name}</h5>
                 <p className="text-muted mb-1">Full Stack Developer</p>
                 <p className="text-muted mb-4">Madhapur, Telangana, India</p>

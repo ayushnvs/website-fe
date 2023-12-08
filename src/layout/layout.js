@@ -15,7 +15,7 @@ const Layout = () => {
             const token = localStorage.getItem('token')
             if (!!username && !!token) {
                 try {
-                    const res = await axios.get(`http://localhost:8000/account/${username}`)
+                    const res = await axios.get(`http://localhost:8000/user/${username}`)
                     setAuth({
                         ...res.data,
                         token,

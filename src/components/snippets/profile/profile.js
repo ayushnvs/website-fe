@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
 import './profile.css'
+import useAuth from '../../../hooks/AuthProvider'
 
 const ProfileSnip = () => {
-
-    const [user, setUser] = useState({})
+    const { auth } = useAuth()
 
     return (
         <div className="profile-snip">
@@ -14,9 +13,13 @@ const ProfileSnip = () => {
                 <div className="card-block">
                     <div className="user-image">
                         <img
-                            src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                            src={
+                                auth.profileImg
+                                ? auth.profileImg
+                                : "https://bootdey.com/img/Content/avatar/avatar7.png"
+                            }
                             className="img-radius"
-                            alt="User-Profile-Image"
+                            alt="User-Profile"
                         />
                     </div>
                     <h6 className="f-w-600 m-t-25 m-b-10">Alessa Robert</h6>

@@ -38,8 +38,8 @@ const LoginPage = () => {
                 localStorage.setItem('token', res.data.token)
                 navigate(from, { replace: true })
             } catch (error) {
-                // alert(error.response.data.error)
-                console.error(error)
+                setUser({}) //TODO: Values are not resetting
+                alert(error.response.data.error)
             }
         } else {
             alert("Username or Password cannot be empty!")

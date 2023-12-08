@@ -1,9 +1,35 @@
-import React from 'react'
 import useAuth from '../../hooks/AuthProvider'
 import './profile.css'
+import axios from 'axios'
 
 const Profile = () => {
-  const { auth } = useAuth()
+  const { auth, setAuth } = useAuth()
+
+  const handleFileChange = (e) => {
+    let file = e.target.files[0];
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = async () => {
+      let fileInfo = {
+        name: file.name,
+        type: file.type,
+        size: Math.round(file.size / 1000) + ' kB',
+        base64: reader.result,
+        file: file,
+      }
+      try {
+        const res = await axios.post(`http://localhost:8000/account/update/${auth.username}`, { profileImg: fileInfo.base64 })
+        if (res.statusText === 'OK') {
+          setAuth({
+            ...auth,
+            profileImg: fileInfo.base64
+          })
+        }
+      } catch (err) { console.log(err) }
+    }
+  }
+
 
   return (
     <section style={{ backgroundColor: "#eee" }}>
@@ -13,23 +39,28 @@ const Profile = () => {
             <div className="card mb-4">
               <div className="card-body text-center">
 
-                <label htmlFor="file-upload">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                    alt="avatar"
-                    className="rounded-circle img-fluid"
-                    style={{ width: 150 }}
+                <section>
+                  <label htmlFor="file-upload">
+                    <img
+                      src={
+                        auth.profileImg
+                          ? auth.profileImg
+                          : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                      }
+                      alt="avatar"
+                      className="rounded-circle img-fluid"
+                      style={{ width: 150 }}
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    label="Image"
+                    name="profileImg"
+                    id="file-upload"
+                    accept='.jpeg, .png, .jpg'
+                    onChange={handleFileChange}
                   />
-                </label>
-
-                <input
-                  type="file"
-                  label="Image"
-                  name="profileImg"
-                  id="file-upload"
-                  accept='.jpeg, .png, .jpg'
-                  onChange={(e) => { }}
-                />
+                </section>
 
                 <h5 className="my-3">{auth.name}</h5>
                 <p className="text-muted mb-1">Full Stack Developer</p>

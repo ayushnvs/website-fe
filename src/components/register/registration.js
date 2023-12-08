@@ -1,18 +1,16 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import './register.css'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import registerImg from './../../assets/img/register.jpeg'
 import useAuth from '../../hooks/AuthProvider'
 
-const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{4,20}$/
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%]).{8,24}$/
+// const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{4,20}$/
+// const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%]).{8,24}$/
 
 const RegistrationPage = (props) => {
   const navigate = useNavigate()
   const { setAuth } = useAuth()
-
-  const errRef = useRef()
 
   const [user, setUser] = useState({
     name: '',
@@ -63,7 +61,7 @@ const RegistrationPage = (props) => {
     e.preventDefault()
     const { username, password, verifyPassword, isUsernameAvailable } = user
 
-    if (username !== "" && password !== "" && password == verifyPassword) {
+    if (username !== "" && password !== "" && password === verifyPassword) {
       try {
         // Checking Username
         checkAvailability()
@@ -84,14 +82,14 @@ const RegistrationPage = (props) => {
             ...res.data,
             isLoggedIn: true
           })
-          localStorage.setItem('username', res.data.user.username)
+          localStorage.setItem('username', res.data.username)
           localStorage.setItem('token', res.data.token)
           navigate('/')
         })
       } catch (err) {
         console.log(err)
       }
-    } else if (password != verifyPassword) {
+    } else if (password !== verifyPassword) {
       alert('Re-enter password did not match!')
       setUser({
         ...user,

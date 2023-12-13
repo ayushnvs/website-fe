@@ -40,7 +40,7 @@ const Layout = () => {
             {
                 isLoading
                     ? <>
-                        <p className="loadin">Loadin...</p>
+                        <p className="loadin">Loading...</p>
                     </>
                     : <>
                         <Navbar />

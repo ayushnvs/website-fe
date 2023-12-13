@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './register.css'
-import axios from 'axios'
+import axios from '../../api/axios'
 import { Link, useNavigate } from 'react-router-dom'
 import registerImg from './../../assets/img/register.jpeg'
 import useAuth from '../../hooks/AuthProvider'
@@ -41,7 +41,7 @@ const RegistrationPage = (props) => {
   }
 
   const checkAvailability = () => {
-    axios.post('http://localhost:8000/account/useravailable', user).then(res => {
+    axios.post('/account/useravailable', user).then(res => {
       if (user.username !== '') {
         console.log(res)
         setUser({
@@ -70,7 +70,7 @@ const RegistrationPage = (props) => {
           return
         } 
 
-        axios.post('http://localhost:8000/account/register/', user).then(res => {
+        axios.post('/account/register/', user).then(res => {
           console.log(res.data)
           setUser({
             ...user,

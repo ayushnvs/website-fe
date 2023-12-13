@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../api/axios'
 import useAuth from '../../hooks/AuthProvider'
 
 const LoginPage = () => {
@@ -28,14 +28,15 @@ const LoginPage = () => {
 
         if (username !== "" && password !== "") {
             try {
-                const res = await axios.post('http://localhost:8000/account/login', user)
+                const res = await axios.post('/account/login', user)
                 console.log(res)
                 setAuth({
                     ...res.data,
+                    username,
                     isLoggedIn: true
                 })
-                localStorage.setItem('username', res.data.username)
-                localStorage.setItem('token', res.data.token)
+                // localStorage.setItem('username', username)
+                // localStorage.setItem('token', res.data.token)
                 navigate(from, { replace: true })
             } catch (error) {
                 setUser({}) //TODO: Values are not resetting

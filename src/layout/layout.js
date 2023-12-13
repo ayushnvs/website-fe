@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import Navbar from './../components/navigation/navbar'
 import Footer from './../components/navigation/footer'
 import useAuth from "../hooks/AuthProvider"
-import axios from "axios"
+import axios from "./../api/axios"
 
 const Layout = () => {
     const { auth, setAuth } = useAuth()
@@ -15,7 +15,7 @@ const Layout = () => {
             const token = localStorage.getItem('token')
             if (!!username && !!token) {
                 try {
-                    const res = await axios.get(`http://localhost:8000/user/${username}`)
+                    const res = await axios.get(`/user/${username}`)
                     setAuth({
                         ...res.data,
                         token,

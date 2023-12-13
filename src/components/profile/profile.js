@@ -1,6 +1,6 @@
 import useAuth from '../../hooks/AuthProvider'
 import './profile.css'
-import axios from 'axios'
+import axios from './../../api/axios'
 
 const Profile = () => {
   const { auth, setAuth } = useAuth()
@@ -19,7 +19,7 @@ const Profile = () => {
         file: file,
       }
       try {
-        const res = await axios.post(`http://localhost:8000/account/update/${auth.username}`, { profileImg: fileInfo.base64 })
+        const res = await axios.post(`/account/update/${auth.username}`, { profileImg: fileInfo.base64 })
         if (res.statusText === 'OK') {
           setAuth({
             ...auth,

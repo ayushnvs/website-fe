@@ -4,7 +4,7 @@ import axios from '../../api/axios'
 import useAuth from '../../hooks/AuthProvider'
 
 const LoginPage = () => {
-    const { setAuth } = useAuth()
+    const {setAuth } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
@@ -35,8 +35,6 @@ const LoginPage = () => {
                     username,
                     isLoggedIn: true
                 })
-                // localStorage.setItem('username', username)
-                // localStorage.setItem('token', res.data.token)
                 navigate(from, { replace: true })
             } catch (error) {
                 setUser({}) //TODO: Values are not resetting

@@ -5,6 +5,7 @@ import Home from './components/home/home'
 import Profile from './components/profile/profile'
 import Layout from './layout/layout'
 import RequireAuth from './hooks/RequireAuth'
+import PersistLogin from './layout/PersistLogin'
 
 const App = () => {
 
@@ -13,15 +14,17 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Layout />}>
-                        {/* Private Routes */}
-                        <Route element={<RequireAuth />}>
-                            <Route path="/" element={<Home />} />
-                            <Route path='profile' element={<Profile />} />
-                        </Route>
-
                         {/* Public Routes */}
                         <Route path='register' element={<RegistrationPage />} />
                         <Route path='login' element={<LoginPage />} />
+
+                        {/* Private Routes */}
+                        <Route element={<PersistLogin />}>
+                            <Route element={<RequireAuth />}>
+                                <Route path="/" element={<Home />} />
+                                <Route path='profile' element={<Profile />} />
+                            </Route>
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

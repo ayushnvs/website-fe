@@ -28,7 +28,7 @@ const LoginPage = () => {
 
         if (username !== "" && password !== "") {
             try {
-                const res = await axios.post('/account/login', user)
+                const res = await axios.post('/account/login', user, {withCredentials: true })
                 console.log(res)
                 setAuth({
                     ...res.data,
@@ -39,6 +39,7 @@ const LoginPage = () => {
             } catch (error) {
                 setUser({}) //TODO: Values are not resetting
                 alert(error.response.data.error)
+                console.log('Err', error)
             }
         } else {
             alert("Username or Password cannot be empty!")

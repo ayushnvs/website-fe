@@ -14,11 +14,10 @@ const PersistLogin = () => {
             console.log("check Auth: ", !!auth.userame)
             if (!auth.username && !auth.token) {
                 try {
-                    const res = await axios.get(`/user/${auth.username}`)
+                    const res = await axios.get(`/refresh`, { withCredentials: true })
                     console.log("User res: ", res)
                     setAuth({
-                        ...res.data,
-                        token: auth.token,
+                        token: res.token,
                         isLoggedIn: true
                     })
                 } catch (err) {

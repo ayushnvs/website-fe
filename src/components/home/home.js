@@ -10,7 +10,6 @@ const Home = () => {
   
   return (
     <div className="px-4 py-4">
-      {console.log("auth: ", auth)}
       <div className="row">
         <div className="extras col-md-1"></div>
         <div className="col-md-8">

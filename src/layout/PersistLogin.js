@@ -11,13 +11,11 @@ const PersistLogin = () => {
 
     useEffect(() => {
         const verifyToken = async () => {
-            console.log("check Auth: ", !!auth.userame)
             if (!auth.username && !auth.token) {
                 try {
                     const res = await axios.get(`/refresh`, { withCredentials: true })
-                    console.log("User res: ", res)
                     setAuth({
-                        token: res.token,
+                        token: res.data.token,
                         isLoggedIn: true
                     })
                 } catch (err) {

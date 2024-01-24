@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './style.css'
 // import { ChangeThemes } from '../snippets/theme/changeTheme'
 import useAuth from '../../hooks/AuthProvider'
+import axios from '../../api/axios'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -13,12 +14,15 @@ const Navbar = () => {
     navigate('/Profile')
   }
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await axios.get('/logout', { withCredentials: true })
+    } catch (err) {
+      console.log(err)
+    }
     setAuth({
       isLoggedIn: false
     })
-    localStorage.removeItem('username')
-    localStorage.removeItem('token')
   }
 
   return (

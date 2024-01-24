@@ -7,7 +7,6 @@ const RequireAuth = () => {
     
     return (
         <>
-        {console.log("isLoggedIn? ", auth)}
             {
                 auth.isLoggedIn
                     ? <Outlet />

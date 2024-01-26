@@ -1,27 +1,19 @@
-import React from 'react'
-import ProfileSnip from '../snippets/profile/profile'
-import Blog from '../snippets/blog/blog'
-import Quote from '../snippets/quote/quote'
-import Comment from '../snippets/comment/comment'
-import  useAuth from '../../hooks/AuthProvider'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
-  const {auth, setAuth } = useAuth()
-  
+
   return (
-    <div className="px-4 py-4">
-      <div className="row">
-        <div className="extras col-md-1"></div>
-        <div className="col-md-8">
-          <Blog />
-          <Comment />
-        </div>
-        <div className="col-md-3">
-          <Quote />
-          <ProfileSnip />
-        </div>
+    <>
+      <div>
+        Hey Mithi, this is going to be our home page
       </div>
-    </div>
+      <div className="link">
+        <Link className="navbar-brand fw-bold fs-3 ms-2" to="/detail">
+          Blogs Detail Page
+        </Link>
+      </div>
+
+    </>
   )
 }
 

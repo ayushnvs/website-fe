@@ -80,6 +80,7 @@ const RegistrationPage = (props) => {
           })
           setAuth({
             ...res.data,
+            username,
             isLoggedIn: true
           })
           localStorage.setItem('username', res.data.username)

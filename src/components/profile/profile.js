@@ -1,9 +1,26 @@
 import useAuth from '../../hooks/AuthProvider'
 import './profile.css'
-import axios from './../../api/axios'
+import useAxiosPrivate from '../../hooks/useAxiosPrivate'
+import { useEffect } from 'react'
 
 const Profile = () => {
   const { auth, setAuth } = useAuth()
+  const axiosPrivate = useAxiosPrivate()
+  const updateVariables = []
+
+  useEffect(() => {
+    try {
+      console.log("Auth: ", auth)
+      const getProfileData = async() => {
+        const res = await axiosPrivate.post('/profile', {username: auth.username})
+        setAuth({
+          ...auth,
+          ...res.data
+        })
+      }
+      getProfileData()
+    } catch(err) {console.log(err)}
+  }, updateVariables)
 
   const handleFileChange = (e) => {
     let file = e.target.files[0];
@@ -19,7 +36,7 @@ const Profile = () => {
         file: file,
       }
       try {
-        const res = await axios.post(`/account/update/${auth.username}`, { profileImg: fileInfo.base64 })
+        const res = await axiosPrivate.post(`/profile/update/${auth.username}`, { profileImg: fileInfo.base64 })
         if (res.statusText === 'OK') {
           setAuth({
             ...auth,

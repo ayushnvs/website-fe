@@ -31,6 +31,7 @@ const LoginPage = () => {
                 const res = await axios.post('/account/login', user, {withCredentials: true })
                 setAuth({
                     token: res.data.token,
+                    username,
                     isLoggedIn: true
                 })
                 navigate(from, { replace: true })

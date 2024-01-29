@@ -16,6 +16,7 @@ const PersistLogin = () => {
                     const res = await axios.get(`/refresh`, { withCredentials: true })
                     setAuth({
                         token: res.data.token,
+                        username: res.data.username,
                         isLoggedIn: true
                     })
                 } catch (err) {

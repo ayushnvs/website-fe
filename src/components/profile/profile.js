@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import useAuth from '../../hooks/AuthProvider'
 import './profile.css'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
@@ -6,20 +7,21 @@ import { useEffect } from 'react'
 const Profile = () => {
   const { auth, setAuth } = useAuth()
   const axiosPrivate = useAxiosPrivate()
+  const [editingFields, setEditingField] = useState(false)
   const updateVariables = []
 
   useEffect(() => {
     try {
       console.log("Auth: ", auth)
-      const getProfileData = async() => {
-        const res = await axiosPrivate.post('/profile', {username: auth.username})
+      const getProfileData = async () => {
+        const res = await axiosPrivate.post('/profile', { username: auth.username })
         setAuth({
           ...auth,
           ...res.data
         })
       }
       getProfileData()
-    } catch(err) {console.log(err)}
+    } catch (err) { console.log(err) }
   }, updateVariables)
 
   const handleFileChange = (e) => {
@@ -45,6 +47,14 @@ const Profile = () => {
         }
       } catch (err) { console.log(err) }
     }
+  }
+
+  const clickEdit = (e) => {
+    setEditingField(true)
+  }
+
+  const clickUpdate = (e) => {
+    setEditingField(false)
   }
 
 
@@ -142,6 +152,43 @@ const Profile = () => {
                     <p className="text-muted mb-0">{auth.name}</p>
                   </div>
                 </div>
+                <hr />
+                {/* Test Start */}
+                <div className="row">
+                  <div className="col-sm-3">
+                    <p className="mb-0">Test Field</p>
+                  </div>
+                  <div className="col-sm-8">
+                    {
+                      editingFields
+                        ? 
+                        <>
+                        {/* TODO: Add proper html to update fields */}
+                          <div>Editing Field</div>
+                        </>
+                        : 
+                        <p className="text-muted mb-0">{auth.name}</p>
+                    }
+                  </div>
+                  <div className="col-sm-1">
+                    {
+                      editingFields
+                        ?
+                        <>
+                          <button className='update-profile-data' onClick={clickUpdate}>
+                            <i className="fa-solid fa-square-check"></i>
+                          </button>
+                        </>
+                        :
+                        <>
+                          <button className='update-profile-data' onClick={clickEdit}>
+                            <i className="fas fa-pencil-alt fa-lg" />
+                          </button>
+                        </>
+                    }
+                  </div>
+                </div>
+                {/* Test End */}
                 <hr />
                 <div className="row">
                   <div className="col-sm-3">

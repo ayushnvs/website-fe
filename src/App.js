@@ -18,11 +18,11 @@ const App = () => {
                         {/* Public Routes */}
                         <Route path='register' element={<RegistrationPage />} />
                         <Route path='login' element={<LoginPage />} />
-                        <Route path="/" element={<Home />} />
 
                         {/* Private Routes */}
                         <Route element={<PersistLogin />}>
                             <Route element={<RequireAuth />}>
+                                <Route path="/" element={<Home />} />
                                 <Route path="/detail" element={<Detail />}/>
                                 <Route path='profile' element={<Profile />} />
                             </Route>

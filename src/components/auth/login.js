@@ -29,6 +29,7 @@ const LoginPage = () => {
         if (username !== "" && password !== "") {
             try {
                 const res = await axios.post('/account/login', user, {withCredentials: true })
+                console.log(res)
                 setAuth({
                     token: res.data.token,
                     username,

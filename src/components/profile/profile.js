@@ -7,7 +7,6 @@ import { useEffect } from 'react'
 const Profile = () => {
   const { auth, setAuth } = useAuth()
   const axiosPrivate = useAxiosPrivate()
-  const [editingFields, setEditingField] = useState(false)
   const updateVariables = []
 
   useEffect(() => {
@@ -47,14 +46,6 @@ const Profile = () => {
         }
       } catch (err) { console.log(err) }
     }
-  }
-
-  const clickEdit = (e) => {
-    setEditingField(true)
-  }
-
-  const clickUpdate = (e) => {
-    setEditingField(false)
   }
 
 
@@ -144,51 +135,13 @@ const Profile = () => {
           <div className="col-lg-8">
             <div className="card mb-4">
               <div className="card-body">
-                <div className="row">
-                  <div className="col-sm-3">
-                    <p className="mb-0">Full Name</p>
-                  </div>
-                  <div className="col-sm-9">
-                    <p className="text-muted mb-0">{auth.name}</p>
-                  </div>
-                </div>
+                <ProfileFields fieldName={"Full Name"} name={"name"}/>
                 <hr />
-                {/* Test Start */}
-                <div className="row">
-                  <div className="col-sm-3">
-                    <p className="mb-0">Test Field</p>
-                  </div>
-                  <div className="col-sm-8">
-                    {
-                      editingFields
-                        ? 
-                        <>
-                        {/* TODO: Add proper html to update fields */}
-                          <div>Editing Field</div>
-                        </>
-                        : 
-                        <p className="text-muted mb-0">{auth.name}</p>
-                    }
-                  </div>
-                  <div className="col-sm-1">
-                    {
-                      editingFields
-                        ?
-                        <>
-                          <button className='update-profile-data' onClick={clickUpdate}>
-                            <i className="fa-solid fa-square-check"></i>
-                          </button>
-                        </>
-                        :
-                        <>
-                          <button className='update-profile-data' onClick={clickEdit}>
-                            <i className="fas fa-pencil-alt fa-lg" />
-                          </button>
-                        </>
-                    }
-                  </div>
-                </div>
-                {/* Test End */}
+                <ProfileFields fieldName={"Email"} name={"email"}/>
+                <hr />
+                <ProfileFields fieldName={"Phone"} name={"phone"}/>
+                <hr />
+                <ProfileFields fieldName={"Address"} name={"address"} />
                 <hr />
                 <div className="row">
                   <div className="col-sm-3">
@@ -208,15 +161,6 @@ const Profile = () => {
                   </div>
                 </div>
                 <hr />
-                {/* <div className="row">
-                  <div className="col-sm-3">
-                    <p className="mb-0">Mobile</p>
-                  </div>
-                  <div className="col-sm-9">
-                    <p className="text-muted mb-0">(098) 765-4321</p>
-                  </div>
-                </div>
-                <hr /> */}
                 <div className="row">
                   <div className="col-sm-3">
                     <p className="mb-0">Address</p>
@@ -389,6 +333,78 @@ const Profile = () => {
     </section>
 
   )
+}
+
+const ProfileFields = (props) => {
+  const { auth, setAuth } = useAuth()
+  const axiosPrivate = useAxiosPrivate()
+  const [editingFields, setEditingField] = useState(false)
+
+  console.log("Data", auth[props.name])
+  const [newData, setNewData] = useState({[props.name]: auth[props.name]})
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setNewData({
+      [name]: value
+    })
+  }
+
+  const clickEdit = (e) => {
+    setEditingField(true)
+  }
+
+  const clickUpdate = async (e) => {
+    setEditingField(false)
+    if (newData[props.name] !== auth[props.name]) {
+      const res = await axiosPrivate.post('/profile/update', {username: props.username, ...newData})
+      console.log(res)
+      if (res.status == 200) {
+        setAuth({
+          ...auth,
+          ...newData
+        })
+      }
+    }
+  }
+
+  return (
+    <div className="row">
+      <div className="col-sm-3">
+        <p className="mb-0">{props.fieldName}</p>
+      </div>
+      <div className="col-sm-8">
+        {
+          editingFields
+            ?
+            <>
+              <div>
+                <input className="form-control form-control-sm" name={props.name} id={props.name} type="text" onChange={handleChange} value={newData[props.name]} />
+              </div>
+            </>
+            :
+            <p className="text-muted mb-0">{auth[props.name]}</p>
+        }
+      </div>
+      <div className="col-sm-1">
+        {
+          editingFields
+            ?
+            <>
+              <button className='update-profile-data' onClick={clickUpdate}>
+                <i className="fa-solid fa-square-check"></i>
+              </button>
+            </>
+            :
+            <>
+              <button className='update-profile-data' onClick={clickEdit}>
+                <i className="fas fa-pencil-alt fa-lg" />
+              </button>
+            </>
+        }
+      </div>
+    </div>
+  );
 }
 
 export default Profile

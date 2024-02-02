@@ -27,6 +27,7 @@ const Profile = () => {
     }, [auth, axiosPrivate, setAuth])
 
     const handleFileChange = (e) => {
+        console.log("File section")
         let file = e.target.files[0];
         let reader = new FileReader();
 
@@ -84,8 +85,9 @@ const Profile = () => {
                                 </section>
 
                                 <h5 className="my-3">{auth.name}</h5>
-                                <p className="text-muted mb-1">Full Stack Developer</p>
-                                <p className="text-muted mb-4">Madhapur, Telangana, India</p>
+                                {/*TODO: Add "Enter you position" option properly here.*/}
+                                <p className="text-muted mb-1">{ auth.position }</p>
+                                <p className="text-muted mb-4">{ auth.address }</p>
                                 <div className="d-flex justify-content-center mb-2">
                                     <button type="button" className="btn btn-primary">
                                         Follow
@@ -337,7 +339,7 @@ const ProfileFields = (props) => {
     const clickUpdate = async (e) => {
         setEditingField(false)
         if (newData[props.name] !== auth[props.name]) {
-            const res = await axiosPrivate.post('/profile/update', { username: auth.username, ...newData })
+            const res = await axiosPrivate.post(`/profile/update/${auth.username}`, { username: auth.username, ...newData })
             if (res.status === 200) {
                 setAuth({
                     ...auth,

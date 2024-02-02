@@ -30,9 +30,9 @@ const Navbar = () => {
       {
         auth.isLoggedIn
           ?
-          <nav className="navbar bg-body-tertiary sticky-top border">
-            <div className='float-start ms-2'>
-              <Link className="navbar-brand fw-bold fs-3 ms-2" to="/">
+          <nav className="navbar-size-man navbar bg-body-tertiary sticky-top border">
+            <div className='logo-margin-man float-start ms-2'>
+              <Link className=" navbarlink-man navbar-brand fw-bold fs-3 ms-2" to="/">
                 {/* <img src={logo} alt="" width="30" height="30" /> */}
                 BLOGS
               </Link>

@@ -4,7 +4,7 @@ body {
 }
 
 .container-2 {
-    border: 1px solid black; 
+    border: 1px solid rgb(175, 167, 167); 
     height:auto;
     width: auto;
     position: sticky;
@@ -12,12 +12,12 @@ body {
 }
 
 .one {
-    height: 380px;
+    height: 17em;
     width: 250px;
     border: 2px solid black;
     margin-left: 60px;
     margin-right: 22px;
-    margin-top: 70px;
+    margin-top: 1.5em;
     margin-bottom: 20px;
     border-radius: 15px;
     
@@ -26,14 +26,19 @@ body {
 .two {
     height: 523px;
     width: 650px;
-    border: 2px solid black;
+    /* border: 2px solid rgb(196, 196, 196); */
     margin-right: 30px;
     margin-left: 22px;
-    margin-top: 150px;
+    margin-top: 5em;
     margin-bottom: 20px;
-    border-radius: 15px;
+    border-radius: 17px;
+    box-shadow: 8px 4px 8px 4px rgba(31, 30, 30, 0.2);
+    
 
 }
+.two:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
 
 img {
     border-radius: 15px 15px 0px 0px;
@@ -41,14 +46,21 @@ img {
  .three {
     height: 480px;
     width: 270px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     margin-right: 60px;
     margin-left: 15px;
-    margin-top: 70px;
+    margin-top: 1.5em;
     margin-bottom: 20px;
     border-radius: 15px;
+    box-shadow: 8px 4px 8px 4px rgba(31, 30, 30, 0.2);
+    
 
- }
+}
+.three:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+ 
  .link {
     display: flex;
     /* margin: 40px; */

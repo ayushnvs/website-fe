@@ -85,9 +85,9 @@ const Profile = () => {
                                 </section>
 
                                 <h5 className="my-3">{auth.name}</h5>
-                                {/*TODO: Add "Enter you position" option properly here.*/}
-                                <p className="text-muted mb-1">{ auth.position }</p>
-                                <p className="text-muted mb-4">{ auth.address }</p>
+                                {/*TODO: Add "Enter you position" option properly here. ......... RETHINK */}
+                                <p className="text-muted mb-1">{auth.position}</p>
+                                <p className="text-muted mb-4">{auth.address}</p>
                                 <div className="d-flex justify-content-center mb-2">
                                     <button type="button" className="btn btn-primary">
                                         Follow
@@ -100,40 +100,7 @@ const Profile = () => {
                         </div>
                         <div className="card mb-4 mb-lg-0">
                             <div className="card-body p-0">
-                                <ul className="list-group list-group-flush rounded-3">
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i className="fas fa-globe fa-lg text-warning" />
-                                        <p className="mb-0">Add your website</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i
-                                            className="fab fa-github fa-lg"
-                                            style={{ color: "#333333" }}
-                                        />
-                                        <p className="mb-0">Add your github account</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i
-                                            className="fab fa-twitter fa-lg"
-                                            style={{ color: "#55acee" }}
-                                        />
-                                        <p className="mb-0">Add your twitter account</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i
-                                            className="fab fa-instagram fa-lg"
-                                            style={{ color: "#ac2bac" }}
-                                        />
-                                        <p className="mb-0">Add your instagram account</p>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i
-                                            className="fab fa-facebook-f fa-lg"
-                                            style={{ color: "#3b5998" }}
-                                        />
-                                        <p className="mb-0">Add your facebook account</p>
-                                    </li>
-                                </ul>
+                                <ProfileSites />
                             </div>
                         </div>
                     </div>
@@ -149,6 +116,8 @@ const Profile = () => {
                                 <ProfileFields fieldName={"Phone"} name={"phone"} />
                                 <hr />
                                 <ProfileFields fieldName={"Address"} name={"address"} />
+                                <hr />
+                                <ProfileFields fieldName={"Position"} name={"position"} />
                             </div>
                         </div>
                         <div className="row">
@@ -312,6 +281,81 @@ const Profile = () => {
             </div>
         </section>
 
+    )
+}
+
+const ProfileSites = (props) => {
+    const { auth, setAuth } = useAuth()
+    const axiosPrivate = useAxiosPrivate()
+
+    return (
+        <>
+            <a href='https://ayush.in' className="mb-0"></a>
+            <ul className="profile-sites list-group list-group-flush rounded-3">
+                <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i className="fas fa-globe fa-lg text-warning" />
+                    <p className="mb-0">
+                        {
+                            auth.socialMedia && auth.socialMedia.website
+                                ? <a href={auth.socialMedia.website} className="mb-0">{auth.socialMedia.website}</a>
+                                : "Add your website"
+                        }
+                    </p>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i
+                        className="fab fa-github fa-lg"
+                        style={{ color: "#333333" }}
+                    />
+                    <p className="mb-0">
+                        {
+                            auth.socialMedia && auth.socialMedia.github
+                                ? <a href={`https://github.com/${auth.socialMedia.github}`} className="mb-0">{auth.socialMedia.github}</a>
+                                : "Add your GitHub account"
+                        }
+                    </p>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i
+                        className="fab fa-twitter fa-lg"
+                        style={{ color: "#55acee" }}
+                    />
+                    <p className="mb-0">
+                        {
+                            auth.socialMedia && auth.socialMedia.twitter
+                                ? <a href={`https://twitter.com/${auth.socialMedia.twitter}`} className="mb-0">{auth.socialMedia.twitter}</a>
+                                : "Add your twitter account"
+                        }
+                    </p>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i
+                        className="fab fa-instagram fa-lg"
+                        style={{ color: "#ac2bac" }}
+                    />
+                    <p className="mb-0">
+                        {
+                            auth.socialMedia && auth.socialMedia.instagram
+                                ? <a href={`https://instagram.com/${auth.socialMedia.instagram}`} className="mb-0">{auth.socialMedia.instagram}</a>
+                                : "Add your instagram account"
+                        }
+                    </p>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i
+                        className="fab fa-facebook-f fa-lg"
+                        style={{ color: "#3b5998" }}
+                    />
+                    <p className="mb-0">
+                        {
+                            auth.socialMedia && auth.socialMedia.facebook
+                                ? <a href={`https://facebook.com/${auth.socialMedia.facebook}`} className="mb-0">{auth.socialMedia.facebook}</a>
+                                : "Add your facebook account"
+                        }
+                    </p>
+                </li>
+            </ul>
+        </>
     )
 }
 

@@ -7,3 +7,12 @@ button.update-profile-data {
 	border: none;
 	padding: 0;
 }
+
+.profile-sites a {
+    text-decoration: none;
+    color: #212529;
+}
+
+.profile-sites a:hover {
+    text-decoration: underline;
+}

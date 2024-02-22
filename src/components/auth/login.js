@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import axios from '../../api/axios'
 import useAuth from '../../hooks/AuthProvider'
+import Logo from './../../assets/img/Conch1.jpg'
 
 const LoginPage = () => {
     const {setAuth } = useAuth()
@@ -13,6 +14,17 @@ const LoginPage = () => {
         username: '',
         password: ''
     })
+
+    const [showPassword, setShowPassword] = useState(false)
+    const showPasswordRef = useRef()
+
+    const handleShowPassword = e => {
+        if (showPassword) {
+            console.log(showPasswordRef.current)
+            // TODO: Complete Show Password Implementation
+        }
+        setShowPassword(!showPassword)
+    }
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -50,7 +62,7 @@ const LoginPage = () => {
     return (
         <div className='bg-body-tertiary pb-4 pt-4'>
             <div className="nav justify-content-center pt-4 mb-4">
-                <img className='nav-item' src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width={72} height={57} />
+                <img className='nav-item site-logo' src={Logo} alt="" width={72} height={57} />
             </div>
             <div className="nav justify-content-center h3">welcome to Narayana blogs</div>
             <p className="nav justify-content-center h5 mt-4 fw-normal">Please sign in</p>
@@ -66,9 +78,9 @@ const LoginPage = () => {
                             <label htmlFor="floatingPassword">Password</label>
                         </div>
                         <div className="form-check text-start my-3">
-                            <input className="form-check-input" type="checkbox" defaultValue="remember-me" id="flexCheckDefault" />
+                            <input ref={showPasswordRef} className="form-check-input" type="checkbox" defaultValue="remember-me" id="flexCheckDefault" onClick={handleShowPassword} />
                             <label className="form-check-label" htmlFor="flexCheckDefault">
-                                Remember me
+                                Show Password
                             </label>
                         </div>
                         <button className="btn btn-primary w-100 py-2" type="submit">

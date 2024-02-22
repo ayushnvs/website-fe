@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-// import logo from './../../assets/img/logo.png'
+import Logo from './../../assets/img/Conch1.jpg'
 import './style.css'
 // import { ChangeThemes } from '../snippets/theme/changeTheme'
 import useAuth from '../../hooks/AuthProvider'
@@ -33,7 +33,7 @@ const Navbar = () => {
           <nav className="navbar-size-man navbar bg-body-tertiary sticky-top border">
             <div className='logo-margin-man float-start ms-2'>
               <Link className=" navbarlink-man navbar-brand fw-bold fs-3 ms-2" to="/">
-                {/* <img src={logo} alt="" width="30" height="30" /> */}
+                <img className='site-logo' src={Logo} alt="" width="30" height="30" />
                 BLOGS
               </Link>
             </div>

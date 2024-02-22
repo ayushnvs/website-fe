@@ -1,4 +1,4 @@
-import './blogCard.css'
+// import './blogCard.css'
 
 const BlogCard = () => {
     return (

@@ -72,13 +72,15 @@ const LoginPage = () => {
             <div className='d-flex align-items-center'>
                 <main className="form-signin w-100 m-auto">
                     <form onSubmit={handleSubmit}>
-                        <div className="form-floating">
-                            <input type="text" className="form-control" id="floatingInput" name="username" onChange={handleChange} placeholder="username" />
-                            <label htmlFor="floatingInput">Username</label>
+                        <div className="mb-3">
+                            <label htmlFor="Input" className="form-label">Username</label>
+                            <span className="text-danger">*</span>
+                            <input type="text" className="form-control" id="Input" name="username" onChange={handleChange} />
                         </div>
-                        <div className="form-floating">
-                            <input ref={passwordRef} type="password" className="form-control" id="floatingPassword" name="password" onChange={handleChange} placeholder="Password" />
-                            <label htmlFor="floatingPassword">Password</label>
+                        <div>
+                            <label htmlFor="Password" className="form-label">Password</label>
+                            <span className="text-danger">*</span>
+                            <input ref={passwordRef} type="password" className="form-control" id="Password" name="password" onChange={handleChange} />
                         </div>
                         <div className="form-check text-start my-3">
                             <input className="form-check-input" type="checkbox" defaultValue="remember-me" id="flexCheckDefault" onClick={handleShowPassword} />

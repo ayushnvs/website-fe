@@ -15,15 +15,18 @@ const LoginPage = () => {
         password: ''
     })
 
-    const [showPassword, setShowPassword] = useState(false)
-    const showPasswordRef = useRef()
+    const [showPassword, setShowPassword] = useState(true)
+    const passwordRef = useRef()
 
     const handleShowPassword = e => {
-        if (showPassword) {
-            console.log(showPasswordRef.current)
-            // TODO: Complete Show Password Implementation
-        }
-        setShowPassword(!showPassword)
+        let showPasswordInput = passwordRef.current
+        if (showPassword) {   
+            showPasswordInput.setAttribute('type', "");
+        } else showPasswordInput.setAttribute('type', "password");
+        
+        setShowPassword(() => {
+            return !showPassword
+        })
     }
 
     const handleChange = e => {
@@ -74,11 +77,11 @@ const LoginPage = () => {
                             <label htmlFor="floatingInput">Username</label>
                         </div>
                         <div className="form-floating">
-                            <input type="password" className="form-control" id="floatingPassword" name="password" onChange={handleChange} placeholder="Password" />
+                            <input ref={passwordRef} type="password" className="form-control" id="floatingPassword" name="password" onChange={handleChange} placeholder="Password" />
                             <label htmlFor="floatingPassword">Password</label>
                         </div>
                         <div className="form-check text-start my-3">
-                            <input ref={showPasswordRef} className="form-check-input" type="checkbox" defaultValue="remember-me" id="flexCheckDefault" onClick={handleShowPassword} />
+                            <input className="form-check-input" type="checkbox" defaultValue="remember-me" id="flexCheckDefault" onClick={handleShowPassword} />
                             <label className="form-check-label" htmlFor="flexCheckDefault">
                                 Show Password
                             </label>

@@ -64,7 +64,7 @@ const LoginPage = () => {
 
 
     return (
-        <div className='bg-body-tertiary pb-4 pt-4'>
+        <div className='ws-auth ws-login bg-body-tertiary pb-4 pt-4'>
             <div className="nav justify-content-center pt-4 mb-4">
                 <img className='nav-item site-logo' src={Logo} alt="" width={72} height={57} />
             </div>

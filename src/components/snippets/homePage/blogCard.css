@@ -14,7 +14,7 @@ body {
 .one {
     height: 17em;
     width: 250px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     margin-left: 60px;
     margin-right: 22px;
     margin-top: 1.5em;
@@ -40,7 +40,7 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 
-img {
+img.blogcard-img {
     border-radius: 15px 15px 0px 0px;
 }
  .three {
@@ -52,7 +52,7 @@ img {
     margin-top: 1.5em;
     margin-bottom: 20px;
     border-radius: 15px;
-    box-shadow: 8px 4px 8px 4px rgba(31, 30, 30, 0.2);
+    /* box-shadow: 8px 4px 8px 4px rgba(31, 30, 30, 0.2); */
     
 
 }

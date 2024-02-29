@@ -1,0 +1,27 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/** Auth COMPONENTS
+Class names should start with ws-login
+**/
+
+.ws-auth {
+    min-height: 100vh;
+}
+
+/* NAVIGATION COMPONENT */
+
+
+
+
+
+/* HOME PAGE */
+
+/* PROFILE PAGE */
+
+/* SNIPPETS */

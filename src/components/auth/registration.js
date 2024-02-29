@@ -116,7 +116,7 @@ const RegistrationPage = (props) => {
     }
 
     return (
-        <div className="bg-body-tertiary pb-4 pt-4">
+        <div className="ws-auth bg-body-tertiary pb-4 pt-4">
             <div className="row">
                 <div className="col-7">
                     <div className="d-flex align-items-center mt-4">

@@ -7,6 +7,7 @@ import Profile from './components/profile/profile'
 import Layout from './layout/layout'
 import RequireAuth from './hooks/RequireAuth'
 import PersistLogin from './layout/PersistLogin'
+import './assets/css/globalStyle.css'
 
 const App = () => {
 

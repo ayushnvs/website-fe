@@ -12,9 +12,11 @@
     margin-right: 10px;
 }
 
-#brand-logo-main span {
+#brand-logo-main a {
     font-size: 1.5rem;
     font-weight: 600;
+    text-decoration: inherit;
+    color: inherit;
 }
 
 .ws-navbar button {
@@ -51,8 +53,14 @@
     margin-right: 10px;
 }
 
-#profile-dropdown {
+#profile-dropdown, #profile-dropdown button {
     font-weight: 600;
+}
+
+#profile-dropdown a {
+    text-decoration: inherit;
+    color: inherit;
+    padding: 1px 6px 1px 6px;
 }
 
 hr {

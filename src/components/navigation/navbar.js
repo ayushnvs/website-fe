@@ -1,24 +1,32 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import Logo from './../../assets/img/Conch1.jpg'
-// import { ChangeThemes } from '../snippets/theme/changeTheme'
 import useAuth from '../../hooks/AuthProvider'
 import axios from '../../api/axios'
+import { Helpers } from '../../assets/js/globalScript'
+
+const helper = new Helpers();
 
 const Navbar = () => {
-  const navigate = useNavigate()
   const { auth, setAuth } = useAuth()
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const profileBtnRef = useRef();
+  const profileDropdownRef = useRef()
 
-  // Function to toggle dropdown visibility
+  const toggleVisibility = () => {
+    // Toggle dropdown
+    const dropdown = profileDropdownRef.current
+    helper.toggleVisibility(dropdown);
+
+    // Toggle icon
+    const profileBtn = profileBtnRef.current;
+    let iconUp = profileBtn.querySelector('i[class*=up]');
+    let iconDown = profileBtn.querySelector('i[class*=down]');
+    helper.toggleVisibility(iconUp, "inline-block");
+    helper.toggleVisibility(iconDown, "inline-block");
+  }
+
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleProfileClick = () => {}
-
-  const goToProfile = () => {
-    navigate('/Profile')
+    toggleVisibility();
   }
 
   const handleLogout = async () => {
@@ -40,27 +48,28 @@ const Navbar = () => {
           <nav className='ws-navbar'>
             <div id="brand-logo-main">
                 <img src={Logo} alt="brand logo" />
-                <span>Narayana Blogs</span>
+                <Link to="/"><span>Narayana Blogs</span></Link>
             </div>
-            <button>
+            <button ref={profileBtnRef} onClick={toggleVisibility}>
                 <img src="https://avatars.githubusercontent.com/u/73516326?v=4" alt="profile image" />
                 <i className='fa-solid fa-chevron-down'></i>
+                <i className='fa-solid fa-chevron-up' style={{display: "none"}}></i>
             </button>
 
-            <div id="profile-dropdown">
+            <div ref={profileDropdownRef} id="profile-dropdown" style={{display: "none"}}>
                 <section>
-                <i class="fa-solid fa-house"></i>
-                <span>Home</span>
+                <i className="fa-solid fa-house"></i>
+                <Link onClick={toggleDropdown} to="/">Home</Link>
                 </section>
                 <hr />
                 <section>
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
+                <i className="fa-solid fa-user"></i>
+                <Link onClick={toggleDropdown} to="/profile">Profile</Link>
                 </section>
                 <hr />
                 <section>
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <span>Logout</span>
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                <button onClick={handleLogout}>Logout</button>
                 </section>
             </div>
           </nav>

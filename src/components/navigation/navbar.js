@@ -1,76 +1,13 @@
-// import React from 'react'
-// import { Link, useNavigate } from 'react-router-dom'
-// import Logo from './../../assets/img/Conch1.jpg'
-// import './style.css'
-// // import { ChangeThemes } from '../snippets/theme/changeTheme'
-// import useAuth from '../../hooks/AuthProvider'
-// import axios from '../../api/axios'
-
-// const Navbar = () => {
-//   const navigate = useNavigate()
-//   const { auth, setAuth } = useAuth()
-
-//   const goToProfile = () => {
-//     navigate('/Profile')
-//   }
-
-//   const handleLogout = async () => {
-//     try {
-//       await axios.get('/logout', { withCredentials: true })
-//     } catch (err) {
-//       console.log(err)
-//     }
-//     setAuth({
-//       isLoggedIn: false
-//     })
-//   }
-
-//   return (
-//     <>
-//       {
-//         auth.isLoggedIn
-//           ?
-//           <nav className="navbar-size-man navbar bg-body-tertiary sticky-top border">
-//             <div className='logo-margin-man float-start ms-2'>
-//               <Link className=" navbarlink-man navbar-brand fw-bold fs-3 ms-2" to="/">
-//                 <img className='site-logo' src={Logo} alt="" width="30" height="30" />
-//                 BLOGS
-//               </Link>
-//             </div>
-
-//             {/* <div className="input-group mb-3">
-//               <input type="text" className="form-control" />
-//               <div className="input-group-append">
-//                 <button className="btn btn-primary">
-//                   <i className="fas fa-search" />
-//                 </button>
-//               </div>
-//             </div> */}
-
-//             <div className='float-end me-2'>
-//               {/* <ChangeThemes /> */}
-//               <button type="button" className="btn btn-info me-2" onClick={goToProfile}>Profile</button>
-//               <button className="btn btn-outline-secondary me-2" onClick={handleLogout}>logout</button>
-//             </div>
-
-//           </nav>
-//           :
-//           <div className="me-2">
-//             {/* <ChangeThemes /> */}
-//           </div>
-
-//       }
-//     </>
-//   )
-// }
-
-// export default Navbar
-
-import React, { useState } from 'react';
-import './style.css'; // Import CSS file for styling
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import Logo from './../../assets/img/Conch1.jpg'
+// import { ChangeThemes } from '../snippets/theme/changeTheme'
+import useAuth from '../../hooks/AuthProvider'
+import axios from '../../api/axios'
 
 const Navbar = () => {
-  // State to manage dropdown visibility
+  const navigate = useNavigate()
+  const { auth, setAuth } = useAuth()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Function to toggle dropdown visibility
@@ -78,41 +15,63 @@ const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Function to handle logout
-  const handleLogout = () => {
-    // Implement your logout logic here
-    console.log('Logged out!');
-  };
-
   const handleProfileClick = () => {}
 
+  const goToProfile = () => {
+    navigate('/Profile')
+  }
+
+  const handleLogout = async () => {
+    try {
+      await axios.get('/logout', { withCredentials: true })
+    } catch (err) {
+      console.log(err)
+    }
+    setAuth({
+      isLoggedIn: false
+    })
+  }
+
   return (
-    <nav className="navbar">
-      <div className="navbar__left">
-        {/* Logo and website name */}
-        <div className="navbar__logo">Your Logo</div>
-        <div className="navbar__name">Your Website Name</div>
-      </div>
+    <>
+      {
+        auth.isLoggedIn
+          ?
+          <nav className='ws-navbar'>
+            <div id="brand-logo-main">
+                <img src={Logo} alt="brand logo" />
+                <span>Narayana Blogs</span>
+            </div>
+            <button>
+                <img src="https://avatars.githubusercontent.com/u/73516326?v=4" alt="profile image" />
+                <i className='fa-solid fa-chevron-down'></i>
+            </button>
 
-      <div className="navbar__right">
-        {/* Profile Icon */}
-        <div className="navbar__profile" onClick={toggleDropdown}>
-          <img src="profile-icon.png" alt="Profile" className="navbar__profile-icon" />
-          {/* Dropdown menu */}
-          {isDropdownOpen && (
-            <ul className="navbar__dropdown">
-              <li className="navbar__dropdown-item" onClick={handleProfileClick}>
-                Profile
-              </li>
-              <li className="navbar__dropdown-item" onClick={handleLogout}>
-                Logout
-              </li>
-            </ul>
-          )}
-        </div>
-      </div>
-    </nav>
-  );
-};
+            <div id="profile-dropdown">
+                <section>
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+                </section>
+                <hr />
+                <section>
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+                </section>
+                <hr />
+                <section>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Logout</span>
+                </section>
+            </div>
+          </nav>
+          :
+          <div className="me-2">
+            {/* <ChangeThemes /> */}
+          </div>
 
-export default Navbar;
+      }
+    </>
+  )
+}
+
+export default Navbar
